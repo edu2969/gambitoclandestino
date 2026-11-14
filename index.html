@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gambito Clandestino — Club de ajedrez de Talcahuano</title>
+  <meta name="description" content="Gambito Clandestino: club de ajedrez de Talcahuano. Sumérgete en la experiencia.">
+  <meta name="theme-color" content="#02101c">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preload" href="assets/paisaje.svg" as="image">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile-patch.css">
+</head>
+<body>
+
+  <!-- ===== Capas fijas de la inmersión ===== -->
+  <div id="scene" aria-hidden="true"><img src="assets/paisaje.svg" alt="" decoding="async" draggable="false"></div>
+  <canvas id="sea" aria-hidden="true"></canvas>
+  <div id="fog" aria-hidden="true"></div>
+
+  <!-- Profundímetro: indica dónde estás y permite saltar de sección -->
+  <nav class="gauge" id="gauge" aria-label="Secciones y profundidad">
+    <div class="gauge__rail"><i class="gauge__fill" id="gaugeFill"></i></div>
+    <ol class="gauge__marks" id="gaugeMarks"></ol>
+    <div class="gauge__badge" id="gaugeBadge" aria-hidden="true">0 m</div>
+  </nav>
+
+  <!-- Indicación de scroll -->
+  <div class="cue" id="cue" aria-hidden="true">
+    <span class="cue__text">Desliza para sumergirte</span>
+    <span class="cue__mouse"><i></i></span>
+    <span class="cue__chev"><i></i><i></i><i></i></span>
+  </div>
+
+  <main id="content">
+
+    <!-- ===== Portada ===== -->
+    <section class="hero" id="superficie">
+      <div class="hero__inner" data-hero>
+        <h1 class="sr-only">Gambito Clandestino</h1>
+        <div class="medal">
+          <img src="assets/logo.webp" width="640" height="640" alt="Logo de Gambito Clandestino: rey, dama y caballo de ajedrez" fetchpriority="high">
+        </div>
+        <p class="hero__tag">Club de ajedrez de Talcahuano</p>
+      </div>
+    </section>
+
+    <!-- ===== Quiénes somos ===== -->
+    <section class="sec sec--l" id="quienes">
+      <div class="panel">
+        <h2 class="rv" data-from="l">Quiénes somos</h2>
+        <p class="rv lead" data-from="r" data-d=".06">Años viviendo en la 8va región, nos congregamos a disfrutar del estudio y el juego.</p>
+        <p class="rv" data-from="l" data-d=".12">Las caras de los contrincantes se repetían e inventamos siempre como reunirnos a hablar de las estrategias de la vida.</p>
+        <p class="rv" data-from="r" data-d=".18">Hos nos etiquetamos. Tenemos un mensaje y un distintivo que va creando más historias en torno al Ajedrez.</p>
+      </div>
+    </section>
+
+    <!-- ===== Misión ===== -->
+    <section class="sec sec--r" id="mision">
+      <div class="panel">
+        <h2 class="rv" data-from="r">Misión</h2>
+        <p class="rv lead" data-from="l" data-d=".06">Forjar la unión de las personas a través del lazo del razonamiento puro.</p>
+        <ul class="vows">
+          <li class="rv" data-from="r" data-d=".12"><span class="vows__ico" data-piece="pawn"></span><div><h3>Equipo</h3><p>Cada elemento es un ingrediente propio de los festines.</p></div></li>
+          <li class="rv" data-from="l" data-d=".18"><span class="vows__ico" data-piece="knight"></span><div><h3>Cognos</h3><p>Todos estudiantes eterno y aprendices del arte, buscado las maravillas escondidas en el universo de posibilidades, y libros de leyendas Ajedrecisticas.</p></div></li>
+          <li class="rv" data-from="r" data-d=".24"><span class="vows__ico" data-piece="king"></span><div><h3>Semilla</h3><p>Siembra y cosechas en las jóvenes actuales y futuras generaciones, perdurará a medida que se abran a goce del Ajedrez.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Integrantes ===== -->
+    <section class="sec sec--wide" id="integrantes">
+      <div class="panel panel--wide">
+        <h2 class="rv" data-from="l">Integrantes</h2>
+        <p class="rv lead" data-from="r" data-d=".06">Doce piezas juegan en el tablero.</p>
+      </div>
+      <ul class="roster" id="roster"></ul>
+    </section>
+
+    <!-- ===== Actividades ===== -->
+    <section class="sec sec--acts" id="actividades">
+      <div class="panel panel--wide">
+        <h2 class="rv" data-from="r">Actividades</h2>
+        <p class="rv lead" data-from="l" data-d=".06">Las cuatro últimas jugadas del club: tres torneos a la luz del día y una junta que nadie debería mencionar.</p>
+      </div>
+
+      <ol class="acts">
+        <li class="act rv" data-from="l">
+          <time datetime="2026-11-05">05 nov 2026</time>
+          <div class="act__body">
+            <span class="act__kind act__kind--dark"><svg viewBox="0 0 24 60" aria-hidden="true"><use href="#dagger"/></svg>Junta clandestina</span>
+            <h3>Qué gran deguste</h3>
+            <p>Manoteamos todos esos relojes, algo salió a la parrilla y el dueño de casa puso el color tinto.
+               Misión cumplida.
+            </p>
+          </div>
+        </li>
+        <li class="act rv" data-from="r">
+          <time datetime="2026-10-24">24 oct 2026</time>
+          <div class="act__body">
+            <span class="act__kind"><span class="act__ico" data-piece="rook"></span>Torneo</span>
+            <h3>Copa Clandestina</h3>
+            <p>Celebramos los 90 años del Club Ajedrez Concepción. Nos presentamos con un equipo y obtuvimos el lugar 11° de entre 22 equipos. Gran torneo. Algo puedes saber acá: 
+              <a href="https://www.facebook.com/100063476413006/posts/1728525779273286/?rdid=2u4RKI9CRyCTl0De#">Puclicación diario Concepción.</a>
+            </p>
+          </div>
+        </li>
+        <li class="act rv" data-from="l">
+          <time datetime="2026-09-10">10 sep 2026</time>
+          <div class="act__body">
+            <span class="act__kind"><span class="act__ico" data-piece="knight"></span>Torneo</span>
+            <h3>Relámpago del Puerto</h3>
+            <p>Elias y Patricio, dos de nuestros valientes, partieron a la batalla en donde triunfaron en el podio. ¡Felicitaciones!.</p>
+          </div>
+        </li>
+        <li class="act rv" data-from="r">
+          <time datetime="2026-05-30">30 may 2026</time>
+          <div class="act__body">
+            <span class="act__kind"><span class="act__ico" data-piece="queen"></span>Torneo</span>
+            <h3>Junta Cerrando Mayo</h3>
+            <p>Otra de esas. Todo bien, todo exquisito, buenas partidas, buenas lecciones, música elixir, qué más pedir.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== Pie de página: ubicación + contador ===== -->
+    <footer class="sec sec--foot" id="fondo">
+      <div class="foot">
+        <figure class="map rv" data-from="l">
+          <svg viewBox="0 0 600 420" role="img" aria-labelledby="mapT mapD" class="map__svg">
+            <title id="mapT">Mapa estático de Talcahuano</title>
+            <desc id="mapD">Carta ilustrada de la bahía de Concepción con la península de Tumbes y Talcahuano marcada con un puñal rojo.</desc>
+            <defs>
+              <linearGradient id="seaG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3a52"/><stop offset="1" stop-color="#041a29"/></linearGradient>
+              <linearGradient id="landG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26323f"/><stop offset="1" stop-color="#121a24"/></linearGradient>
+              <linearGradient id="daggerG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8d0f14"/><stop offset=".5" stop-color="#ff5a4d"/><stop offset="1" stop-color="#8d0f14"/></linearGradient>
+              <pattern id="grat" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#7fd4ec" stroke-opacity=".12" stroke-width="1"/></pattern>
+              <clipPath id="frame"><rect width="600" height="420"/></clipPath>
+            </defs>
+            <g clip-path="url(#frame)">
+              <rect width="600" height="420" fill="url(#seaG)"/>
+              <rect width="600" height="420" fill="url(#grat)"/>
+              <!-- curvas de profundidad -->
+              <g fill="none" stroke="#7fd4ec" stroke-opacity=".16" stroke-width="1.2">
+                <path d="M0 250 C60 240 110 200 150 150 C170 120 175 80 170 30 L170 0"/>
+                <path d="M0 200 C40 190 80 150 110 110 C130 80 130 40 125 0"/>
+                <path d="M300 130 C340 140 390 150 430 200 C450 225 480 235 520 230"/>
+                <path d="M330 100 C380 110 430 130 470 175 C490 200 520 205 560 195"/>
+              </g>
+              <!-- tierra -->
+              <path id="landP" d="M205 85 C212 62 238 58 248 78 C254 110 252 150 256 190 C258 215 264 232 280 244 C310 262 360 270 400 262 C440 252 450 210 470 180 C490 150 500 100 530 70 C550 50 580 40 600 30 L600 420 L0 420 L0 318 C50 322 100 330 140 318 C170 308 185 284 190 262 C192 220 196 190 198 150 C199 120 200 100 205 85 Z" fill="url(#landG)" stroke="#9fe3f5" stroke-opacity=".55" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M205 85 C212 62 238 58 248 78 C254 110 252 150 256 190 C258 215 264 232 280 244 C310 262 360 270 400 262 C440 252 450 210 470 180 C490 150 500 100 530 70 C550 50 580 40 600 30" fill="none" stroke="#9fe3f5" stroke-opacity=".18" stroke-width="9" stroke-linejoin="round"/>
+              <!-- isla Quiriquina -->
+              <ellipse cx="318" cy="62" rx="26" ry="11" transform="rotate(-28 318 62)" fill="url(#landG)" stroke="#9fe3f5" stroke-opacity=".5" stroke-width="1.6"/>
+              <!-- trama de calles -->
+              <g stroke="#9fe3f5" stroke-opacity=".12" stroke-width="1" fill="none">
+                <path d="M262 236 L330 292 M280 250 L300 300 M300 256 L380 300 M340 266 L350 330 M400 266 L420 320 M230 262 L248 330 M210 290 L260 340"/>
+              </g>
+              <!-- etiquetas -->
+              <g font-family="Spectral, Georgia, serif" font-style="italic" fill="#bfe9f5" fill-opacity=".8">
+                <text x="26" y="118" font-size="17" letter-spacing="2">Océano Pacífico</text>
+                <text x="355" y="168" font-size="17" letter-spacing="2">Bahía de Concepción</text>
+                <text x="40" y="262" font-size="13" letter-spacing="1">Bahía San Vicente</text>
+                <text x="206" y="130" font-size="13" fill="#e6eaef" fill-opacity=".72" transform="rotate(90 206 130)" letter-spacing="2">Península de Tumbes</text>
+                <text x="284" y="40" font-size="12">Isla Quiriquina</text>
+                <text x="470" y="296" font-size="14" fill="#e6eaef" fill-opacity=".72">Concepción</text>
+              </g>
+              <!-- rosa de los vientos -->
+              <g transform="translate(540 360)" stroke="#e6eaef" stroke-opacity=".7" fill="none" stroke-width="1.4">
+                <circle r="26" stroke-opacity=".3"/>
+                <path d="M0 -34 L6 -6 L0 0 L-6 -6 Z M0 34 L5 6 L0 0 L-5 6 Z M-34 0 L-6 5 L0 0 L-6 -5 Z M34 0 L6 5 L0 0 L6 -5 Z" fill="#e6eaef" fill-opacity=".18"/>
+                <text y="-40" text-anchor="middle" font-size="12" fill="#e6eaef" stroke="none" font-family="Cinzel, serif">N</text>
+              </g>
+              <!-- puñal marcando Talcahuano -->
+              <g transform="translate(262 238)">
+                <circle class="map__pulse" r="8" fill="none" stroke="#ff5a4d" stroke-width="2"/>
+                <circle class="map__pulse map__pulse--2" r="8" fill="none" stroke="#ff5a4d" stroke-width="2"/>
+                <svg x="-14" y="-72" width="28" height="70" viewBox="0 0 24 60" overflow="visible"><use href="#dagger"/></svg>
+              </g>
+            </g>
+            <rect x="1" y="1" width="598" height="418" fill="none" stroke="#e6eaef" stroke-opacity=".5" stroke-width="2"/>
+            <rect x="9" y="9" width="582" height="402" fill="none" stroke="#e6eaef" stroke-opacity=".22" stroke-width="1"/>
+          </svg>
+          <figcaption>Talcahuano, Región del Biobío, Chile<br><span>36°43′ S · 73°07′ O — mapa ilustrativo.
+            <a href="https://www.openstreetmap.org/?mlat=-36.7167&amp;mlon=-73.1167#map=13/-36.7167/-73.1167" target="_blank" rel="noopener">Ver en OpenStreetMap</a></span></figcaption>
+        </figure>
+
+        <div class="count rv" data-from="r" data-d=".05" id="counterBox">
+          <p class="count__label">Integrantes</p>
+          <div class="count__num" aria-hidden="true">
+            <span class="digit"><span class="digit__strip" id="dTens"></span></span>
+            <span class="digit"><span class="digit__strip" id="dUnits"></span></span>
+          </div>
+          <span class="sr-only">Doce integrantes</span>
+          <ul class="pips" id="pips" aria-hidden="true"></ul>
+          <p class="count__txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        </div>
+      </div>
+      <p class="legal">© 2026 Gambito Clandestino · Talcahuano</p>
+    </footer>
+
+  </main>
+
+  <!-- Símbolo: puñal rojo del logo -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="dg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8d0f14"/><stop offset=".5" stop-color="#ff5a4d"/><stop offset="1" stop-color="#8d0f14"/></linearGradient>
+      <symbol id="dagger" viewBox="0 0 24 60">
+        <path d="M12 60 L8.4 22 L15.6 22 Z" fill="url(#dg)"/>
+        <rect x="1" y="14" width="22" height="5" rx="2.2" fill="url(#dg)"/>
+        <rect x="9.6" y="2" width="4.8" height="13" rx="1.6" fill="url(#dg)"/>
+        <circle cx="12" cy="3.2" r="3.2" fill="url(#dg)"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <noscript><p style="position:fixed;inset:auto 0 0;background:#02101c;color:#e6eaef;padding:1rem;text-align:center;z-index:99">Esta experiencia necesita JavaScript activado.</p></noscript>
+
+  <script src="js/pieces.js"></script>
+  <script src="js/sea.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/mobile-patch.js"></script>
+</body>
+</html>

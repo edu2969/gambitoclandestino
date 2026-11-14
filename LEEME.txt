@@ -1,0 +1,21 @@
+GAMBITO CLANDESTINO — experiencia de inmersión
+==============================================
+Uso: descomprime el ZIP y abre index.html con doble clic (funciona sin internet ni servidor).
+
+Estructura
+  index.html          contenido y estructura
+  css/style.css       estilos
+  js/pieces.js        piezas vectoriales (Path2D -> sprites con brillo)
+  js/sea.js           cámara, caída, splash, balanceo, burbujas
+  js/ui.js            entradas laterales, profundímetro, contador 0->12
+  assets/             logo, paisaje SVG, fuentes (Cinzel, Spectral) y favicon
+
+Ajustes rápidos
+  Cantidad de piezas:   js/sea.js -> maxN
+  Velocidad de caída:   js/sea.js -> updatePiece (gravedad / vmax)
+  Integrantes:          js/ui.js -> MEMBERS (el contador va 0 -> 12)
+  Textos y actividades: index.html
+
+Parche móvil (css/mobile-patch.css + js/mobile-patch.js)
+  Solo actúa en pantallas <=820px (o táctiles <=1100px). Corrige el scroll horizontal /
+  ampliación al 200 %. Para quitarlo, borra sus dos líneas en index.html.
