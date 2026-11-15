@@ -2,7 +2,7 @@
    Gambito Clandestino — interfaz ligada al scroll
    · Cada bloque entra por un lado y se desvanece al salir
    · Profundímetro (progreso + navegación)
-   · Contador 0 → 12
+   · Contador 0 → TOTAL_MEMBERS
    Una sola lectura de layout en measure(); por frame solo se
    escriben transform/opacity (sin forzar reflow).
    ============================================================ */
@@ -15,17 +15,28 @@
   var items = [];            // {el, top, h, dir, d, last:{x,o}}
   var secs = [];             // secciones para el profundímetro
   var hero, cue, gauge, badge, fill, marks = [];
-  var counterTop = 0, counterEl, tensEl, unitsEl, pips = [], lastCount = -1;
+  var counterTop = 0, counterEl, tensEl, unitsEl, pips = [], lastCount = -1;  
   var MEMBERS = [
-    ['Maestro Chu', 'MI Refente', 'king'], ['Alvaro T', 'Para', 'rook'],
-    ['M Julio', 'Sólido carisma', 'knight'], ['JC', 'Leyenda porteña', 'pawn'],
-    ['Sergio', 'Entusiastas anécdotas', 'bishop'], ['Pedro', 'Integrador jugador', 'knight'],
-    ['Master Iván', 'En varias fotos', 'bishop'], ['Alejandro', 'De los primeros', 'knight'],
-    ['Paolo', 'Crípto aliado', 'pawn'], ['Godoy', 'El mejor', 'rook'],
-    ['Malú', 'Eres tú', 'queen'], ['Gino', 'Desde Chillán', 'pawn']
+    ['Maestro Chu', 'MF Referente y panzón', 'king'], ['MI Ganzo', 'Clandestino´s best one', 'knight'], 
+    ['Alvaro T', 'El profe', 'rook'],
+    ['M Julio', 'El fantasma de Purén', 'knight'], ['JC', 'Leyenda porteña', 'king'],
+    ['Sergenevich', 'Entusiastas anécdotas', 'bishop'], ['Pedro', 'El papá de Maxi', 'knight'],
+    ['Master Iván', 'Papá pitufo', 'bishop'], ['Alejandro', 'Choro del puerto', 'knight'],
+    ['Paolo', 'La promesa', 'pawn'], ['Godoy', 'El mejor', 'rook'],
+    ['Claudio G', 'El constructor del tablero', 'rook'], ['Claudio M', 'Faith no More', 'pawn'],
+    ['Malú', 'The queen', 'queen'], ['Gino', 'From L.A.', 'pawn'], 
+    ['Héctor', 'Te busca Aquiles', 'bishop'],
+    ['Miguel', 'El pastor', 'bishop'], ['Pataldo', 'Todo en ley', 'pawn'], 
+    ['EdUTroN', 'Guitarriemos', 'king'], ['Patorzún', 'A casa vamos', 'knight'], 
+    ['Elías', 'Con todo', 'rook'], ['Nicolás', 'Clandestino romántico', 'pawn'], 
+    ['Gabo', 'Mejorando día a día', 'bishop'], ['Salva', 'No te confíes', 'knight'],
+    ['Maxi', 'Inquieta promesa', 'pawn']
   ];
+  var TOTAL_MEMBERS = MEMBERS.length;
+
   var SECTIONS = [
     ['superficie', 'Superficie'], ['quienes', 'Quiénes somos'], ['mision', 'Misión'],
+    ['escudo', 'Significado de<br>nuestro escudo'],
     ['integrantes', 'Integrantes'], ['actividades', 'Actividades'], ['fondo', 'Ubicación']
   ];
 
@@ -60,10 +71,10 @@
     tensEl = document.getElementById('dTens'); unitsEl = document.getElementById('dUnits');
     counterEl = document.getElementById('counterBox');
     var i, s = '';
-    for (i = 0; i <= 1; i++) s += '<b>' + i + '</b>'; tensEl.innerHTML = s;
+    for (i = 0; i <= Math.floor(TOTAL_MEMBERS / 10); i++) s += '<b>' + i + '</b>'; tensEl.innerHTML = s;
     s = ''; for (i = 0; i <= 9; i++) s += '<b>' + i + '</b>'; unitsEl.innerHTML = s;
     var pipsEl = document.getElementById('pips');
-    for (i = 0; i < 12; i++) { var li2 = document.createElement('li'); li2.innerHTML = icon('pawn'); pipsEl.appendChild(li2); pips.push(li2); }
+    for (i = 0; i < TOTAL_MEMBERS; i++) { var li2 = document.createElement('li'); li2.innerHTML = icon('pawn'); pipsEl.appendChild(li2); pips.push(li2); }
 
     // profundímetro
     var ol = document.getElementById('gaugeMarks');
@@ -129,8 +140,8 @@
     lastCount = v;
     tensEl.style.transform = 'translateY(' + (-Math.floor(v / 10) * 1.12).toFixed(2) + 'em)';
     unitsEl.style.transform = 'translateY(' + (-(v % 10) * 1.12).toFixed(2) + 'em)';
-    for (var i = 0; i < 12; i++) pips[i].classList.toggle('on', i < v);
-    counterEl.classList.toggle('is-full', v === 12);
+    for (var i = 0; i < TOTAL_MEMBERS; i++) pips[i].classList.toggle('on', i < v);
+    counterEl.classList.toggle('is-full', v === TOTAL_MEMBERS);
   }
 
   /* ---------- Frame ---------- */
@@ -184,9 +195,9 @@
       lastY = sy; vhNow = vh;
     }
 
-    // contador 0 → 12 según el scroll
+    // contador 0 → TOTAL_MEMBERS según el scroll
     var start = counterTop - vh * .95, end = Math.max(start + vh * .35, S.maxScroll - vh * .06);
-    setCount(Math.round(12 * clamp((sy - start) / (end - start), 0, 1)));
+    setCount(Math.round(TOTAL_MEMBERS * clamp((sy - start) / (end - start), 0, 1)));
   }
 
   G.UI = {
