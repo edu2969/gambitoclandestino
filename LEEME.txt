@@ -13,7 +13,7 @@ Estructura
 Ajustes rápidos
   Cantidad de piezas:   js/sea.js -> maxN
   Velocidad de caída:   js/sea.js -> updatePiece (gravedad / vmax)
-  Integrantes:          js/ui.js -> MEMBERS (el contador va 0 -> 12)
+  Fundadores:          js/ui.js -> MEMBERS (el contador va 0 -> 12)
   Textos y actividades: index.html
 
 Parche móvil (css/mobile-patch.css + js/mobile-patch.js)

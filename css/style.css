@@ -124,7 +124,7 @@ p { margin: 0 0 1.1rem; max-width: 62ch; }
 .vows__ico { width: 2.6rem; height: 3.6rem; }
 .vows__ico svg, .act__ico svg, .rost__ico svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
-/* ---------- Integrantes ---------- */
+/* ---------- Fundadores ---------- */
 .sec--wide { padding-top: clamp(5rem, 14vh, 9rem); }
 .roster {
   list-style: none; margin: 2.6rem 0 0; padding: 0; display: grid; gap: 1.2rem 1.6rem;

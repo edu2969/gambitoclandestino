@@ -37,7 +37,7 @@
   var SECTIONS = [
     ['superficie', 'Superficie'], ['quienes', 'Quiénes somos'], ['mision', 'Misión'],
     ['escudo', 'Significado de<br>nuestro escudo'],
-    ['integrantes', 'Integrantes'], ['actividades', 'Actividades'], ['fondo', 'Ubicación']
+    ['fundadores', 'Fundadores'], ['actividades', 'Actividades'], ['fondo', 'Ubicación']
   ];
 
   /* ---------- Iconos de piezas (misma silueta que el canvas) ---------- */
